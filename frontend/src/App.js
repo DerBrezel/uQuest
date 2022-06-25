@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react';
+import TypeWriterEffect from 'react-typewriter-effect';
 
 function App() {
 
@@ -18,7 +19,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>The text that the server send is:</p>
-        <p>{currentText}</p>
+         <TypeWriterEffect
+            textStyle={{ fontFamily: 'Red Hat Display' }}
+            startDelay={100}
+            cursorColor="black"
+            text={currentText}
+            typeSpeed={100}
+            hideCursorAfterText={true}
+          />
       </header>
     </div>
   );
