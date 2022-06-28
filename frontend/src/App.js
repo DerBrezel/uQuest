@@ -17,6 +17,7 @@ function App() {
     const playstyle = ["Explore", "Talk", "Fight", "Loot"]
     const time = ["Short", "Medium", "Long", "NoLife"]
     const jobQuestion = "What class do you like to play?"
+    const text1s = ["I am a ", "I like to ", "My Time commitment is "]
 
     const QuestionType = {
         'Job': 1,
@@ -51,21 +52,8 @@ function App() {
                 <Row style={{margin: "1rem"}}>
                     <Col xs={3}>
                         <Row>
-                            <p>Answers</p>
                             <PlayerChoice choices={jobs} text1={"I am a "}
                                           onClick={clickedOption} type={QuestionType.Job}></PlayerChoice>
-                        </Row>
-                        <Row>
-
-                            <PlayerChoice choices={playstyle} text1={"I like to "}
-                                          onClick={clickedOption} type={QuestionType.Playstyle}></PlayerChoice>
-
-                        </Row>
-                        <Row>
-
-                            <PlayerChoice choices={time} text1={"My Time commitment is "}
-                                          onClick={clickedOption} type={QuestionType.Time}></PlayerChoice>
-
                         </Row>
                     </Col>
                     <Col>
