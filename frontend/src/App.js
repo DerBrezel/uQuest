@@ -9,7 +9,7 @@ import SkyrimDude from './assets/Skyrim_Dude.png';
 function App() {
 
     // I Hardcode because i am lazy.
-    const [currentText, setCurrentText] = useState("");
+    const [currentText, setCurrentText] = useState(0);
     const [currentJob, setCurrentJob] = useState("");
     const [currentPlaystyle, setCurrentPlaystyle] = useState("");
     const [currentTime, setCurrentTime] = useState("");
@@ -17,12 +17,14 @@ function App() {
     const playstyle = ["Explore", "Talk", "Fight", "Loot"]
     const time = ["Short", "Medium", "Long", "NoLife"]
     const jobQuestion = "What class do you like to play?"
-    const text1s = ["I am a ", "I like to ", "My Time commitment is "]
+
+    const text1s = ["I am a ", "I like to ", "My Time is "]
+    const allDialogueOptions=[jobs, playstyle, time]
 
     const QuestionType = {
-        'Job': 1,
-        'Playstyle': 2,
-        'Time': 3,
+        'Job': 0,
+        'Playstyle': 1,
+        'Time': 2,
     }
 
     // This is how we will fetch data from the server.
@@ -36,9 +38,11 @@ function App() {
     function clickedOption(option, type) {
         if (type === QuestionType.Job) {
             setCurrentJob(jobs[option])
+            setCurrentText(1)
         }
         if (type === QuestionType.Playstyle) {
             setCurrentPlaystyle(playstyle[option]);
+            setCurrentText(2)
         }
         if (type === QuestionType.Time) {
             setCurrentTime(time[option])
@@ -52,8 +56,8 @@ function App() {
                 <Row style={{margin: "1rem"}}>
                     <Col xs={3}>
                         <Row>
-                            <PlayerChoice choices={jobs} text1={"I am a "}
-                                          onClick={clickedOption} type={QuestionType.Job}></PlayerChoice>
+                            <PlayerChoice choices={allDialogueOptions[currentText]} text1={text1s[currentText]}
+                                          onClick={clickedOption} type={currentText}></PlayerChoice>
                         </Row>
                     </Col>
                     <Col>
