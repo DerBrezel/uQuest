@@ -11,7 +11,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^2.1.3",
+    "react-typewriter-effect": "^1.1.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -19,12 +20,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -38,9 +33,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
   "devDependencies": {
-    "eslint": "^8.18.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
   }

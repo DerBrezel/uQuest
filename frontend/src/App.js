@@ -44,15 +44,15 @@ function App() {
                     <Col xs={6}>
                         <Row><img height={500} src={SkyrimDude}/></Row>
                         <Row>
-                             <TypeWriterEffect
-            textStyle={{ fontFamily: 'Red Hat Display' }}
-            startDelay={100}
-            cursorColor="black"
-            text={jobQuestion}
-            typeSpeed={100}
-            scrollArea={App}
-            hideCursorAfterText={true}
-          />
+                            <TypeWriterEffect
+                                textStyle={{fontFamily: 'Red Hat Display'}}
+                                startDelay={100}
+                                cursorColor="black"
+                                text={jobQuestion}
+                                typeSpeed={100}
+                                scrollArea={App}
+                                hideCursorAfterText={true}
+                            />
                             <p>You have chosen: {currentJob}</p>
                         </Row>
                     </Col>
