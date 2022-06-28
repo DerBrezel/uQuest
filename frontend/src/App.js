@@ -12,9 +12,17 @@ function App() {
     const [currentText, setCurrentText] = useState("");
     const [currentJob, setCurrentJob] = useState("");
     const [currentPlaystyle, setCurrentPlaystyle] = useState("");
+    const [currentTime, setCurrentTime] = useState("");
     const jobs = ["Warrior", "Thief", "Mage"]
     const playstyle = ["Explore", "Talk", "Fight", "Loot"]
+    const time = ["Short", "Medium", "Long", "NoLife"]
     const jobQuestion = "What class do you like to play?"
+
+    const QuestionType = {
+        'Job': 1,
+        'Playstyle': 2,
+        'Time': 3,
+    }
 
     // This is how we will fetch data from the server.
     /*useEffect(() => {
@@ -24,12 +32,16 @@ function App() {
     }, []);
     */
 
-    function clickedJobOption(option) {
-        setCurrentJob(jobs[option]);
-    }
-
-    function clickedPlaystyleOption(option) {
-        setCurrentPlaystyle(playstyle[option]);
+    function clickedOption(option, type) {
+        if (type === QuestionType.Job) {
+            setCurrentJob(jobs[option])
+        }
+        if (type === QuestionType.Playstyle) {
+            setCurrentPlaystyle(playstyle[option]);
+        }
+        if (type === QuestionType.Time) {
+            setCurrentTime(time[option])
+        }
     }
 
     return (
@@ -38,9 +50,25 @@ function App() {
                 <Row xs={2}><h1>Skyrim uQuest</h1></Row>
                 <Row style={{margin: "1rem"}}>
                     <Col xs={3}>
-                        <p>Answers</p>
-                        <PlayerChoice choices={jobs} text1={"I am a "} onClick={clickedJobOption}></PlayerChoice>
+                        <Row>
+                            <p>Answers</p>
+                            <PlayerChoice choices={jobs} text1={"I am a "}
+                                          onClick={clickedOption} type={QuestionType.Job}></PlayerChoice>
+                        </Row>
+                        <Row>
+
+                            <PlayerChoice choices={playstyle} text1={"I like to "}
+                                          onClick={clickedOption} type={QuestionType.Playstyle}></PlayerChoice>
+
+                        </Row>
+                        <Row>
+
+                            <PlayerChoice choices={time} text1={"My Time commitment is "}
+                                          onClick={clickedOption} type={QuestionType.Time}></PlayerChoice>
+
+                        </Row>
                     </Col>
+
                     <Col xs={6}>
                         <Row><img height={500} src={SkyrimDude}/></Row>
                         <Row>
@@ -53,7 +81,7 @@ function App() {
                                 scrollArea={App}
                                 hideCursorAfterText={true}
                             />
-                            <p>You have chosen: {currentJob}</p>
+                            <p>You have chosen: {currentJob} and {currentPlaystyle} and {currentTime}</p>
                         </Row>
                     </Col>
                 </Row>
