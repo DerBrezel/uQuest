@@ -68,22 +68,25 @@ function App() {
 
                         </Row>
                     </Col>
-
-                    <Col xs={6}>
-                        <Row><img height={500} src={SkyrimDude}/></Row>
-                        <Row>
-                            <TypeWriterEffect
-                                textStyle={{fontFamily: 'Red Hat Display'}}
-                                startDelay={100}
-                                cursorColor="black"
-                                text={jobQuestion}
-                                typeSpeed={100}
-                                scrollArea={App}
-                                hideCursorAfterText={true}
-                            />
-                            <p>You have chosen: {currentJob} and {currentPlaystyle} and {currentTime}</p>
-                        </Row>
+                    <Col>
+                        <Row><img style={{height: 650, width: "auto"}} src={SkyrimDude}/></Row>
                     </Col>
+                    <Row>
+                        <Col xs={6}>
+                            <Row>
+                                <TypeWriterEffect
+                                    textStyle={{fontFamily: 'Red Hat Display'}}
+                                    startDelay={100}
+                                    cursorColor="black"
+                                    text={jobQuestion}
+                                    typeSpeed={100}
+                                    scrollArea={App}
+                                    hideCursorAfterText={true}
+                                />
+                                <p>You have chosen: {currentJob} and {currentPlaystyle} and {currentTime}</p>
+                            </Row>
+                        </Col>
+                    </Row>
                 </Row>
             </Container>
         </div>
