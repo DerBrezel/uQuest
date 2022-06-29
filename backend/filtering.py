@@ -5,19 +5,6 @@
 
 import pandas as pd
 
-# create test preference profile
-testpp = pd.Series({"Action": 0.2,
-                "Erkundung": 0.4,
-                "Social": 0.3})
-
-# create test dataframe with example weights,
-df = pd.DataFrame({"Action": [0.1, 0.4, 0.8],
-                   "Erkundung": [0.5, 0.1, 0.2],
-                   "Social": [0.1, 0.8, 0.3]})
-
-print("\n Test preference profile: \n \n", testpp, "\n")
-
-
 
 def cfilter(pp, df):     # input preference profile and data frame
     # calculate difference between each point in pp and df, sum up in value, sort by value
@@ -32,55 +19,42 @@ def cfilter(pp, df):     # input preference profile and data frame
     return result
 
 
-print("Test Recommended Quests: \n \n", cfilter(testpp, df), "\n")
-
-
-# read csv, the delimiter must be set to allow for commas in the columns
-qdf = pd.read_csv("skyrim_db.csv", delimiter=";")
 # get this from input:
 playerClass = "warrior"
 
-print("Imported csv: \n \n", qdf, "\n")
-
-# slice relevant data
-qdfs = qdf.iloc[:,7:]
-
-# drop unnecessary equipment
-if playerClass != "warrior":
-    qdfs = qdfs.drop(["itemEqWarrior"], axis = 1)
-if playerClass != "thief":
-    qdfs = qdfs.drop(["itemEqThief"], axis = 1)
-if playerClass != "mage":
-    qdfs = qdfs.drop(["itemEqMage"], axis = 1)
+# read csv, the delimiter must be set to allow for commas in the columns
+df = pd.read_csv("skyrim_db.csv", delimiter=";")
+print("Imported csv: \n \n", df, "\n")
 
 
+def slice(df, playerClass):  # slice the df according to class
+    dfs = df.iloc[:, 7:]  # slice relevant data
+    # drop unnecessary equipment
+    if playerClass != "warrior":
+        dfs = dfs.drop(["itemEqWarrior"], axis=1)
+    if playerClass != "thief":
+        dfs = dfs.drop(["itemEqThief"], axis=1)
+    if playerClass != "mage":
+        dfs = dfs.drop(["itemEqMage"], axis=1)
+    print("Sliced: \n \n", dfs, "\n")
+    return dfs  # return original df and sliced and prepped dfs
 
-print("Sliced: \n \n", qdfs, "\n")
 
+dfs = slice(df, playerClass)
 
-# duration: length (.25, .5, .75, 1.0)
-# item exp: level
-# itemValue: loot/moneys
-# class exclusive weights (Equipment)
-
-
+# trial preference profile
 pp = pd.Series({"timeInvest": 0.2,
                 "expWant": 0.4,
                 "moneyWant": 0.3,
                 "equWant": 0.5})
-
 print("\n Preference profile: \n \n", pp, "\n")
 
-sorted = cfilter(pp, qdfs)
-
+sorted = cfilter(pp, dfs)
 print("Recommended Quests: \n \n", sorted, "\n")
 
 topidx = sorted.index.values[0] # top quest index
-topq = qdf.iloc[topidx, :].tolist()
-# when I try to slice the correct row, it turns some text into nan
+topq = df.iloc[topidx, :].tolist()
+
 print(topq)
-
-#resultSeries = qdf.iloc[]
-
 
 # send all other entries from the original dataframe at the top ID to the frontend
