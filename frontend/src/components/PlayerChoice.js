@@ -15,8 +15,8 @@ function PlayerChoice({choices, text1, text2, onClick, type}) {
     }
 
     return (
-        <div style={{backgroundImage: `url(${ChatBackground})`, minHeight: '400px'}}>
-            <div style={{minHeight: "100px"}}></div>
+        <div style={{backgroundImage: `url(${ChatBackground})`, minHeight: '450px'}}>
+            <div style={{minHeight: "200px"}}></div>
             {choices.map((job, i) => {
                 return (<Row onMouseEnter={() => {
                     changeHoveredChoice(i)
@@ -24,12 +24,13 @@ function PlayerChoice({choices, text1, text2, onClick, type}) {
                     <Col>
                         <div
                             onClick={() => onClick(i, type)}><p style={{
-                            color: isHovered[i] ? "#FFFFFF" : "#000000",
-                            cursor: "pointer"
-                        }}>{text1}{choices[i]}{text2}</p>
+                            color: isHovered[i] ? "#FFFFFF" : "#FF9999",
+                            cursor: "pointer",
+                            minWidth: "180px"
+                        }}>{Array.isArray(text1) ? text1[i] : text1}{choices[i]}{text2}</p>
                         </div>
                     </Col>
-                    <Col>
+                    <Col style={{alignItems: "end"}}>
                         <img src={CurrentSelection} height={24} hidden={!isHovered[i]}/> </Col>
                 </Row>)
             })}
