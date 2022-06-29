@@ -19,42 +19,54 @@ def cfilter(pp, df):     # input preference profile and data frame
     return result
 
 
-# get this from input:
-playerClass = "warrior"
-
-# read csv, the delimiter must be set to allow for commas in the columns
-df = pd.read_csv("skyrim_db.csv", delimiter=";")
-print("Imported csv: \n \n", df, "\n")
 
 
-def slice(df, playerClass):  # slice the df according to class
+
+def slice(df, playerclass):  # slice the df according to class
     dfs = df.iloc[:, 7:]  # slice relevant data
     # drop unnecessary equipment
-    if playerClass != "warrior":
+    if playerclass != "warrior":
         dfs = dfs.drop(["itemEqWarrior"], axis=1)
-    if playerClass != "thief":
+    if playerclass != "thief":
         dfs = dfs.drop(["itemEqThief"], axis=1)
-    if playerClass != "mage":
+    if playerclass != "mage":
         dfs = dfs.drop(["itemEqMage"], axis=1)
-    print("Sliced: \n \n", dfs, "\n")
     return dfs  # return original df and sliced and prepped dfs
 
-
-dfs = slice(df, playerClass)
+print("Recommended Quests: \n \n", sorted, "\n")
 
 # trial preference profile
-pp = pd.Series({"timeInvest": 0.2,
+testpp = pd.Series({"timeInvest": 0.2,
                 "expWant": 0.4,
                 "moneyWant": 0.3,
                 "equWant": 0.5})
-print("\n Preference profile: \n \n", pp, "\n")
 
-sorted = cfilter(pp, dfs)
-print("Recommended Quests: \n \n", sorted, "\n")
+# get this from input:
+playerclass = "mage"
 
-topidx = sorted.index.values[0] # top quest index
-topq = df.iloc[topidx, :].tolist()
+print("\n Preference profile: \n \n", testpp, "\n \n Class:", playerclass, "\n")
 
-print(topq)
+def filter(csvname, playerclass, pp):
+    # read csv, the delimiter must be set to allow for commas in the columns
+    df = pd.read_csv(csvname, delimiter=";")
+    dfs = slice(df, playerclass)  # slice data
+    sorted = cfilter(pp, dfs)  # sort by best match
+    topidx = sorted.index.values[0]  # find top quest index
+    topq = df.iloc[topidx, :].tolist()  # make into list
+    return topq
 
-# send all other entries from the original dataframe at the top ID to the frontend
+
+def filterprint(csvname, playerclass, pp):
+    # read csv, the delimiter must be set to allow for commas in the columns
+    df = pd.read_csv("skyrim_db.csv", delimiter=";")
+    print("Imported csv: \n \n", df, "\n")
+    dfs = slice(df, playerclass)
+    print("Sliced: \n \n", dfs, "\n")
+    sorted = cfilter(pp, dfs)
+    print("Recommended Quests: \n \n", sorted, "\n")
+    topidx = sorted.index.values[0]  # find top quest index
+    topq = df.iloc[topidx, :].tolist()  # make into list
+    print(topq)
+    return topq
+
+filterprint("skyrim_db.csv", playerclass, testpp)
