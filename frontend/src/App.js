@@ -31,8 +31,13 @@ function App() {
 
     //Recomend me a quest:
     const [iscoldStart, setIsColdStart] = useState(true)
+    const [isQuestStart, setIsQuestStart] = useState(true)
     const questRecommendation = ["Quest", "Wildcard", "joke", "to quit"]
     const questText1s = ["I want a new ", "Give me a ", "Tell me a ", "I want to "]
+
+    const fakeAnswers = ["I recommend you do 'The Mind of Madness' quest in 'Pelagius Wing' next. " +
+    "Go to 'Dervenin' for further instructions",
+        "I recommend you raid 'Riften' next", "I wanted to prepare a joke but i took an arrow to the knee", "Thank you for using me"]
 
     // This is how we will fetch data from the server.
     /*useEffect(() => {
@@ -59,6 +64,8 @@ function App() {
     }
 
     function clickedQuestChoice(index) {
+        setIsQuestStart(false)
+        setCurrentText(index)
     }
 
     return (
@@ -86,17 +93,31 @@ function App() {
                         <Row><img style={{height: 650, width: "auto"}} src={SkyrimDude}/></Row>
                     </Col>
                     <Row>
+                        <Col xs={2}></Col>
                         <Col xs={6}>
                             <Row>
                                 <Col xs={3}></Col>
-                                <Col xs={9} style={{minWidth: "800px"}}>
-                                    <h1>{jobQuestion[currentText]}</h1>
-                                    <p>You have chosen: {currentJob} and {currentPlaystyle} and {currentTime}</p>
+                                <Col xs={9} style={{
+                                    minWidth: "800px",
+                                    border: "3px solid black",
+                                    borderRadius: "5px",
+                                    background: "rgb(201, 201, 201, 0.5)",
+                                }}>
+                                    {isQuestStart ? (
+                                        <div>
+                                            <h1>{jobQuestion[currentText]}</h1>
+                                            <p>You have
+                                                chosen: {currentJob} {currentJob ? "and" : ""} {currentPlaystyle}
+                                                {currentPlaystyle ? "and" : ""} {currentTime}</p>
+                                        </div>
+                                    ) : (<div><h1>{fakeAnswers[currentText]}</h1></div>)
+                                    }
                                 </Col>
                             </Row>
                         </Col>
                     </Row>
                 </Row>
+                <Row xs={1}></Row>
             </Container>
         </div>
     );
