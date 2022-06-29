@@ -1,6 +1,6 @@
-itemId;itemName;itemType;itemLocation;itemArea;itemGiver;itemDuration;itemFollowup;itemExp;itemValue;itemEqWarrior;itemEqThief;itemEqMage
-1;First Lessons;Quest;College of Winterhold;Winterhold;Tolfdir;10;NULL;0.1;0.2;0;0.1;0.5
-2;A Chance Arrangement;Quest;Riften;The Rift;Bynjolf;6;NULL;0.1;0.4;0;0.5;0
-3;Take up Arms;Quest;Jorrvaskr;Whiterun;NULL;10;NULL;0.2;0.2;0.1;0;0
-4;Composure, Speed, and Precision;Quest;Angi's Camp;Falkreath;Angi;20;NULL;0.8;0.2;0;0.3;0
-5;NULL;Dungeon;Knifepoint Ridge;Falkreath;NULL;20;NULL;0.5;0.5;0.3;0.2;0
+itemId;itemName;itemType;itemLocation;itemArea;itemGiver;itemFollowup;itemDuration;itemExp;itemValue;itemEqWarrior;itemEqThief;itemEqMage
+1;First Lessons;Quest;College of Winterhold;Winterhold;Tolfdir;NULL;0.25;0.1;0.2;0;0.1;0.5
+2;A Chance Arrangement;Quest;Riften;The Rift;Bynjolf;NULL;0.25;0.1;0.4;0;0.5;0
+3;Take up Arms;Quest;Jorrvaskr;Whiterun;NULL;NULL;0.5;0.2;0.2;0.1;0;0
+4;Composure, Speed, and Precision;Quest;Angi's Camp;Falkreath;Angi;NULL;0.5;0.8;0.2;0;0.3;0
+5;NULL;Dungeon;Knifepoint Ridge;Falkreath;NULL;NULL;0.5;0.5;0.5;0.3;0.2;0
