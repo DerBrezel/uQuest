@@ -39,13 +39,14 @@ function App() {
     "Go to 'Dervenin' for further instructions",
         "I recommend you raid 'Riften' next", "I wanted to prepare a joke but i took an arrow to the knee", "Thank you for using me"]
 
-    // This is how we will fetch data from the server.
-    /*useEffect(() => {
-        fetch('/hello').then(res => res.json()).then(data => {
-            setCurrentText(data.text);
+    const [questFromServer, setQuestFromServer] = useState("")
+    // This is how we will fetch data from the server and save the important values.
+    useEffect(() => {
+        fetch('/getQuest').then(res => res.json()).then(data => {
+            console.log("I have fetched " + data.name)
+            setQuestFromServer({name: data.name, location: data.location, npc: data.npc});
         });
     }, []);
-    */
 
     function clickedOption(option, type) {
         if (type === QuestionType.Job) {
@@ -110,7 +111,11 @@ function App() {
                                                 chosen: {currentJob} {currentJob ? "and" : ""} {currentPlaystyle}
                                                 {currentPlaystyle ? "and" : ""} {currentTime}</p>
                                         </div>
-                                    ) : (<div><h1>{fakeAnswers[currentText]}</h1></div>)
+                                    ) : questFromServer ? (
+                                            <div><h2>{"I recommend you do " + questFromServer.name + " in " +
+                                                questFromServer.location + " next. Go to " + questFromServer.npc +
+                                                " for further instructions."}</h2></div>)
+                                        : (<div><h1>{fakeAnswers[currentText]}</h1></div>)
                                     }
                                 </Col>
                             </Row>
