@@ -4,7 +4,6 @@
 
 
 import pandas as pd
-from enum import Enum
 
 
 def cfilter(pp, df):     # input preference profile and data frame
@@ -32,20 +31,14 @@ def slice(df, playerclass):  # slice the df according to class
     return dfs  # return original df and sliced and prepped dfs
 
 
-
-
-
 def processpp(playstyle, time):  # turn the pp from strings to appropriate floats
-
     strtofloat = {
-
         "Short": 0.25,
         "Medium": 0.5,
         "Long": 0.75,
         "NoLife": 1,
         "Fight": 1,
         "Loot": 1
-
     }
 
     newpp = pd.Series({"timeInvest": strtofloat[time],
@@ -62,20 +55,6 @@ def processpp(playstyle, time):  # turn the pp from strings to appropriate float
 
     return newpp
 
-
-
-print("Recommended Quests: \n \n", sorted, "\n")
-
-# trial preference profile
-testpp = pd.Series({"timeInvest": 0.2,
-                "expWant": 0.4,
-                "moneyWant": 0.3,
-                "equWant": 0.5})
-
-# get this from input:
-playerclass = "Thief"
-
-print("\n Preference profile: \n \n", testpp, "\n \n Class:", playerclass, "\n")
 
 def filter(csvname, playerclass, playstyle, time):
     # read csv, the delimiter must be set to allow for commas in the columns
@@ -100,5 +79,3 @@ def filterprint(csvname, playerclass, pp):
     topq = df.iloc[topidx, :].tolist()  # make into list
     print(topq)
     return topq
-
-filterprint("skyrim_db.csv", playerclass, testpp)
