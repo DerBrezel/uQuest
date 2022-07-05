@@ -32,23 +32,34 @@ def slice(df, playerclass):  # slice the df according to class
     return dfs  # return original df and sliced and prepped dfs
 
 
-strtofloat = {
-
-    "Short": 0.25,
-    "Medium": 0.5,
-    "Long": 0.75,
-    "NoLife": 1,
-    "Fight": 1,
-    "Loot": 1
-
-}
 
 
-def processpp(pp):  # turn the pp from strings to appropriate floats
-    newpp = pd.Series({"timeInvest": 0.2,
-                        "expWant": 0.4,
-                        "moneyWant": 0.3,
-                        "equWant": 0.5})
+
+def processpp(playstyle, time):  # turn the pp from strings to appropriate floats
+
+    strtofloat = {
+
+        "Short": 0.25,
+        "Medium": 0.5,
+        "Long": 0.75,
+        "NoLife": 1,
+        "Fight": 1,
+        "Loot": 1
+
+    }
+
+    newpp = pd.Series({"timeInvest": strtofloat[time],
+                        "expWant": 0,
+                        "moneyWant": 0,
+                        "equWant": 0})
+
+    if playstyle == "Fight":
+        newpp[1] = 1
+    elif playstyle == "Loot":
+        newpp[2] = 1
+    elif playstyle == "Explore":
+        newpp[3] = 1
+
     return newpp
 
 
@@ -70,6 +81,7 @@ def filter(csvname, playerclass, playstyle, time):
     # read csv, the delimiter must be set to allow for commas in the columns
     df = pd.read_csv(csvname, delimiter=";")
     dfs = slice(df, playerclass)  # slice data
+    pp = processpp(playstyle, time)
     sorted = cfilter(pp, dfs)  # sort by best match
     topidx = sorted.index.values[0]  # find top quest index
     topq = df.iloc[topidx, :].tolist()  # make into list
