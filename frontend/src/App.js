@@ -39,6 +39,9 @@ function App() {
     "Go to 'Dervenin' for further instructions",
         "I recommend you raid 'Riften' next", "I wanted to prepare a joke but i took an arrow to the knee", "Thank you for using me"]
 
+    //todo feedback after player
+    const afterRecommendation = ["I liked this quest, give me another", "I liked this quest", "I hated this quest"]
+    const [questFeedback, setQuestFeedback] = useState("")
     const [questFromServer, setQuestFromServer] = useState("")
     // This is how we will fetch data from the server and save the important values.
     useEffect(() => {
@@ -76,10 +79,30 @@ function App() {
             }
             fetch('/getQuest', requestOptions)
                 .then(response => response.json()).then(data => {
-                console.log("I have fetched " + data.name)
                 setQuestFromServer({name: data.name, location: data.location, npc: data.npc});
             });
+
+            setQuestFeedback(true)
         }
+        // todo: figure out a wildcard guess. probably done in backend later
+        if (index === 1) {
+            const requestOptions = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({job: "Mage", playstyle: "Talk", time: "Medium"})
+            }
+            fetch('/getQuest', requestOptions)
+                .then(response => response.json()).then(data => {
+                setQuestFromServer({name: data.name, location: data.location, npc: data.npc});
+            });
+            setQuestFeedback(true)
+        }
+    }
+
+    //todo reset to menu and adapt recommender algorithm in backend
+    function clickedRecommendation() {
+        setIsQuestStart(false)
+        setQuestFeedback(false)
     }
 
     return (
@@ -98,8 +121,10 @@ function App() {
                                 <PlayerChoice choices={allDialogueOptions[currentText]} text1={text1s[currentText]}
                                               onClick={clickedOption} type={currentText}></PlayerChoice>
                                 :
-                                <PlayerChoice choices={questRecommendation} text1={questText1s}
-                                              onClick={clickedQuestChoice}></PlayerChoice>
+                                questFeedback ? (
+                                    <PlayerChoice choices={afterRecommendation} onClick={clickedRecommendation}>
+                                    </PlayerChoice>) : <PlayerChoice choices={questRecommendation} text1={questText1s}
+                                                                     onClick={clickedQuestChoice}></PlayerChoice>
                             }
                         </Row>
                     </Col>
