@@ -67,6 +67,19 @@ function App() {
     function clickedQuestChoice(index) {
         setIsQuestStart(false)
         setCurrentText(index)
+
+        if (index === 0) {
+            const requestOptions = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({job: currentJob, playstyle: currentPlaystyle, time: currentTime})
+            }
+            fetch('/getQuest', requestOptions)
+                .then(response => response.json()).then(data => {
+                console.log("I have fetched " + data.name)
+                setQuestFromServer({name: data.name, location: data.location, npc: data.npc});
+            });
+        }
     }
 
     return (
