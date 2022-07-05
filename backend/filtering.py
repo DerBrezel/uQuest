@@ -4,6 +4,7 @@
 
 
 import pandas as pd
+from enum import Enum
 
 
 def cfilter(pp, df):     # input preference profile and data frame
@@ -19,19 +20,38 @@ def cfilter(pp, df):     # input preference profile and data frame
     return result
 
 
-
-
-
 def slice(df, playerclass):  # slice the df according to class
     dfs = df.iloc[:, 7:]  # slice relevant data
     # drop unnecessary equipment
-    if playerclass != "warrior":
+    if playerclass != "Warrior":
         dfs = dfs.drop(["itemEqWarrior"], axis=1)
-    if playerclass != "thief":
+    if playerclass != "Thief":
         dfs = dfs.drop(["itemEqThief"], axis=1)
-    if playerclass != "mage":
+    if playerclass != "Mage":
         dfs = dfs.drop(["itemEqMage"], axis=1)
     return dfs  # return original df and sliced and prepped dfs
+
+
+strtofloat = {
+
+    "Short": 0.25,
+    "Medium": 0.5,
+    "Long": 0.75,
+    "NoLife": 1,
+    "Fight": 1,
+    "Loot": 1
+
+}
+
+
+def processpp(pp):  # turn the pp from strings to appropriate floats
+    newpp = pd.Series({"timeInvest": 0.2,
+                        "expWant": 0.4,
+                        "moneyWant": 0.3,
+                        "equWant": 0.5})
+    return newpp
+
+
 
 print("Recommended Quests: \n \n", sorted, "\n")
 
@@ -42,11 +62,11 @@ testpp = pd.Series({"timeInvest": 0.2,
                 "equWant": 0.5})
 
 # get this from input:
-playerclass = "mage"
+playerclass = "Thief"
 
 print("\n Preference profile: \n \n", testpp, "\n \n Class:", playerclass, "\n")
 
-def filter(csvname, playerclass, pp):
+def filter(csvname, playerclass, playstyle, time):
     # read csv, the delimiter must be set to allow for commas in the columns
     df = pd.read_csv(csvname, delimiter=";")
     dfs = slice(df, playerclass)  # slice data
