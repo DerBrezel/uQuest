@@ -67,6 +67,8 @@
 [NodeJS]: https://nodejs.org/en/
 [Pip]: https://pip.pypa.io/en/stable/installation/
 
+[`/frontend/`]: frontend
+[`/backend/`]: backend
 [License]: #
 
 
