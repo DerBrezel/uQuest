@@ -108,6 +108,7 @@ function App() {
             // reset the dialogue tree to the menu
             setIsQuestStart(false)
             setQuestFeedback(false)
+            setCurrentText(3)
         }
     }
 
@@ -115,12 +116,21 @@ function App() {
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({fight: index == 1 ? -1 : 0, loot: index == 2 ? -1 : 0, explore: index == 0 ? -1 : 0})
+            body: JSON.stringify({
+                fight: index === 1 ? -1 : 0,
+                loot: index === 2 ? -1 : 0,
+                explore: index === 0 ? -1 : 0
+            })
         }
         fetch('/updatepp', requestOptions)
             .then(response => response.json()).then(data => {
             setQuestFromServer({name: data.name, location: data.location, npc: data.npc});
         });
+        // reset the dialogue tree to the menu
+        setIsQuestStart(false)
+        setQuestFeedback(false)
+        setNeedQuestFeedback(false)
+        setCurrentText(3)
     }
 
     return (

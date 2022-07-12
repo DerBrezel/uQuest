@@ -6,15 +6,15 @@
 import pandas as pd
 
 
-def cfilter(pp, df):     # input preference profile and data frame
+def cfilter(pp, df):  # input preference profile and data frame
     # calculate difference between each point in pp and df, sum up in value, sort by value
     df["diff"] = 0  # add new column for weights
-    for index in range(df.shape[0]):    # iterate through rows
+    for index in range(df.shape[0]):  # iterate through rows
         x = range(len(pp))
-        for i in x:                     # iterate through pp
-            n = pp[i]                   # get individual pp value
-            idiff = abs(df.iat[index, i] - n)   # calculate difference as absolute value
-            df.at[index, "diff"] += idiff       # add to total difference
+        for i in x:  # iterate through pp
+            n = pp[i]  # get individual pp value
+            idiff = abs(df.iat[index, i] - n)  # calculate difference as absolute value
+            df.at[index, "diff"] += idiff  # add to total difference
     result = df.sort_values(by=["diff"], ascending=True)  # sort by difference
     return result
 
@@ -32,20 +32,20 @@ def slice(df, playerclass):  # slice the df according to class
 
 
 def processpp(playstyle, time):  # turn the pp from strings to appropriate floats
-    strtofloat = {              # this dictionary is for translating pp strings to the appropriate values.
-        "Short": 0.25,
-        "Medium": 0.5,
-        "Long": 0.75,
-        "NoLife": 1,
+    strtofloat = {  # this dictionary is for translating pp strings to the appropriate values.
+        "little time": 0.25,
+        "some time": 0.5,
+        "a lot of time": 0.75,
+        "no life": 1,
         "Fight": 1,
-        "Loot": 1
+        "Loot": 1,
         "Explore": 1
     }
 
     newpp = pd.Series({"timeInvest": strtofloat[time],
-                        "expWant": 0,
-                        "moneyWant": 0,
-                        "equWant": 0})
+                       "expWant": 0,
+                       "moneyWant": 0,
+                       "equWant": 0})
 
     if playstyle == "Fight":
         newpp[1] = 1
@@ -80,6 +80,7 @@ def filterprint(csvname, playerclass, pp):
     topq = df.iloc[topidx, :].tolist()  # make into list
     print(topq)
     return topq
+
 
 def updatepp(pp, changes):
     pass
