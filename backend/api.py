@@ -43,7 +43,7 @@ def get_quest():
                 'followup': 0}  # change results[6] so it never returns nan results[6]}
 
 
-@app.route('/updatepp')
+@app.route('/updatepp', methods=["POST"])
 def update_pp():
     if request.method == 'POST':
         response = request.get_json()
