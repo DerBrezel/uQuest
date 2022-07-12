@@ -27,7 +27,8 @@ def get_quest():
     session["time"] = "Short"
 
     if request.method == 'GET':
-        results = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"])
+        results, pp = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"], session["pp"])
+        session["pp"] = pp
         return {'name': results[1], 'type': results[2], 'location': results[3], 'area': results[4], 'npc': results[5],
                 'followup': 0}  # change results[6] so it never returns nan results[6]}
 
@@ -36,7 +37,8 @@ def get_quest():
         session["time"] = response['time']
         session["job"] = response['job']
         session["playstyle"] = response['playstyle']
-        results = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"])
+        results, pp = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"], session["pp"])
+        session["pp"] = pp
         return {'name': results[1], 'type': results[2], 'location': results[3], 'area': results[4], 'npc': results[5],
                 'followup': 0}  # change results[6] so it never returns nan results[6]}
 
@@ -48,7 +50,8 @@ def update_pp():
         loot = response['loot']
         fight = response['fight']
         explore = response['explore']
-        results = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"])
+        results, pp = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"], session["pp"])
+        session["pp"] = pp
         return {'name': results[1], 'type': results[2], 'location': results[3], 'area': results[4], 'npc': results[5],
                 'followup': 0}  # change results[6] so it never returns nan results[6]}
     pass

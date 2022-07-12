@@ -57,7 +57,7 @@ def processpp(playstyle, time):  # turn the pp from strings to appropriate float
     return newpp
 
 
-def filter(csvname, playerclass, playstyle, time):
+def filter(csvname, playerclass, playstyle, time, pp):
     # read csv, the delimiter must be set to allow for commas in the columns
     df = pd.read_csv(csvname, delimiter=";")
     dfs = slice(df, playerclass)  # slice data
@@ -65,7 +65,7 @@ def filter(csvname, playerclass, playstyle, time):
     sorted = cfilter(pp, dfs)  # sort by best match
     topidx = sorted.index.values[0]  # find top quest index
     topq = df.iloc[topidx, :].tolist()  # make into list
-    return topq
+    return topq, pp
 
 
 def filterprint(csvname, playerclass, pp):
