@@ -22,9 +22,10 @@ def hello_world():
 
 @app.route('/getQuest', methods=['GET', 'POST'])
 def get_quest():
-    session["job"] = "Thief"
-    session["playstyle"] = "Fight"
-    session["time"] = "Short"
+    if "job" not in session:
+        session["job"] = "Thief"
+        session["playstyle"] = "Fight"
+        session["time"] = "Short"
 
     if request.method == 'GET':
         results, pp = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"], session["pp"])

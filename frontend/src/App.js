@@ -125,12 +125,13 @@ function App() {
         }
         fetch('/updatepp', requestOptions)
             .then(response => response.json()).then(data => {
-            setQuestFromServer({name: data.name, location: data.location, npc: data.npc});
-        });
+        }).then(
+        );
         // reset the dialogue tree to the menu
+
+        setNeedQuestFeedback(false)
         setIsQuestStart(false)
         setQuestFeedback(false)
-        setNeedQuestFeedback(false)
         setCurrentText(3)
         setQuestFromServer("")
     }
