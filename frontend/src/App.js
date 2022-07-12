@@ -32,6 +32,7 @@ function App() {
     //Recomend me a quest:
     const [iscoldStart, setIsColdStart] = useState(true)
     const [isQuestStart, setIsQuestStart] = useState(true)
+    const [needQuestFeedback, setNeedQuestFeedback] = useState(false)
     const questRecommendation = ["Quest", "Wildcard", "joke"]
     const questText1s = ["I want a new ", "Give me a ", "Tell me a ", "I want to "]
 
@@ -40,7 +41,7 @@ function App() {
         "I recommend you raid 'Riften' next", "I wanted to prepare a joke but i took an arrow to the knee"]
 
     //todo feedback after player
-    const afterRecommendation = ["I liked this quest, give me another", "I liked this quest", "I hated this quest"]
+    const afterRecommendation = ["I liked this quest", "I hated this quest"]
     const [questFeedback, setQuestFeedback] = useState("")
     const [questFromServer, setQuestFromServer] = useState("")
     // This is how we will fetch data from the server and save the important values.
@@ -100,10 +101,26 @@ function App() {
     }
 
     //todo reset to menu and adapt recommender algorithm in backend
-    function clickedRecommendation() {
-        // reset the dialogue tree to the menu
-        // setIsQuestStart(false)
-        // setQuestFeedback(false)
+    function clickedRecommendation(index) {
+        if (index === 1) {
+            setNeedQuestFeedback(true);
+        } else {
+            // reset the dialogue tree to the menu
+            setIsQuestStart(false)
+            setQuestFeedback(false)
+        }
+    }
+
+    function updatePreferenceProfile(index) {
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({fight: index == 1 ? -1 : 0, loot: index == 2 ? -1 : 0, explore: index == 0 ? -1 : 0})
+        }
+        fetch('/updatepp', requestOptions)
+            .then(response => response.json()).then(data => {
+            setQuestFromServer({name: data.name, location: data.location, npc: data.npc});
+        });
     }
 
     return (
@@ -118,19 +135,29 @@ function App() {
                 <Row style={{margin: "1rem"}}>
                     <Col xs={2}></Col>
                     <Col>
-                        <Row><img style={{marginTop: 10, marginLeft: 200, height: 650, width: "auto",  transform: "scaleX(-1)"}}
+                        <Row><img style={{
+                            marginTop: 10,
+                            marginLeft: 200,
+                            height: 650,
+                            width: "auto",
+                            transform: "scaleX(-1)"
+                        }}
                                   src={SkyrimDude}/></Row>
                     </Col>
                     <Col xs={3}>
                         <Row>
-                            {iscoldStart ?
-                                <PlayerChoice choices={allDialogueOptions[currentText]} text1={text1s[currentText]}
-                                              onClick={clickedOption} type={currentText}></PlayerChoice>
-                                :
-                                questFeedback ? (
-                                    <PlayerChoice choices={afterRecommendation} onClick={clickedRecommendation}>
-                                    </PlayerChoice>) : <PlayerChoice choices={questRecommendation} text1={questText1s}
-                                                                     onClick={clickedQuestChoice}></PlayerChoice>
+                            {needQuestFeedback ?
+                                <PlayerChoice choices={allDialogueOptions[1]} text1={text1s[1]} text2={' more!'}
+                                              onClick={updatePreferenceProfile}></PlayerChoice>
+                                : iscoldStart ?
+                                    <PlayerChoice choices={allDialogueOptions[currentText]} text1={text1s[currentText]}
+                                                  onClick={clickedOption} type={currentText}></PlayerChoice>
+                                    :
+                                    questFeedback ? (
+                                            <PlayerChoice choices={afterRecommendation} onClick={clickedRecommendation}>
+                                            </PlayerChoice>) :
+                                        <PlayerChoice choices={questRecommendation} text1={questText1s}
+                                                      onClick={clickedQuestChoice}></PlayerChoice>
                             }
                         </Row>
                     </Col>
@@ -144,15 +171,19 @@ function App() {
                                     color: "white",
                                     textAlign: "center"
                                 }}>
-                                    {isQuestStart ? (
+                                    {needQuestFeedback ?
                                         <div>
-                                            <h4>{jobQuestion[currentText]}</h4>
+                                            <h4>I'm sorry, what was the reason you didn't like this quest?</h4>
                                         </div>
-                                    ) : questFromServer && currentText != 2? (
-                                            <div><h4>{"I recommend you do " + questFromServer.name + " in " +
-                                            questFromServer.location + " next. Go to " + questFromServer.npc +
-                                            " for further instructions."}</h4></div>)
-                                        : (<div><h4>{fakeAnswers[currentText]}</h4></div>)
+                                        : isQuestStart ? (
+                                            <div>
+                                                <h4>{jobQuestion[currentText]}</h4>
+                                            </div>
+                                        ) : questFromServer && currentText != 2 ? (
+                                                <div><h4>{"I recommend you do " + questFromServer.name + " in " +
+                                                    questFromServer.location + " next. Go to " + questFromServer.npc +
+                                                    " for further instructions."}</h4></div>)
+                                            : (<div><h4>{fakeAnswers[currentText]}</h4></div>)
                                     }
                                 </Col>
                             </Row>
