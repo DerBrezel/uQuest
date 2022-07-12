@@ -61,7 +61,9 @@ def filter(csvname, playerclass, playstyle, time, pp):
     # read csv, the delimiter must be set to allow for commas in the columns
     df = pd.read_csv(csvname, delimiter=";")
     dfs = slice(df, playerclass)  # slice data
-    pp = processpp(playstyle, time)
+    if pp is None:
+        pp = processpp(playstyle, time)
+
     sorted = cfilter(pp, dfs)  # sort by best match
     topidx = sorted.index.values[0]  # find top quest index
     topq = df.iloc[topidx, :].tolist()  # make into list
@@ -79,8 +81,17 @@ def filterprint(csvname, playerclass, pp):
     topidx = sorted.index.values[0]  # find top quest index
     topq = df.iloc[topidx, :].tolist()  # make into list
     print(topq)
-    return topq
+    return topq, pp
 
 
-def updatepp(pp, changes):
-    pass
+def updatefilter(csvname, playerclass, playstyle, time, loot, fight, explore, pp):
+    weightImpact = 0.1
+
+    if loot is not 0:
+        pp[1] + loot * weightImpact
+    elif fight is not 0:
+        pp[2] + fight * weightImpact
+    elif explore is not 0:
+        pp[3] + explore * weightImpact
+
+    return filter(csvname, playerclass, playstyle, time, pp)
