@@ -32,13 +32,14 @@ def slice(df, playerclass):  # slice the df according to class
 
 
 def processpp(playstyle, time):  # turn the pp from strings to appropriate floats
-    strtofloat = {
+    strtofloat = {              # this dictionary is for translating pp strings to the appropriate values.
         "Short": 0.25,
         "Medium": 0.5,
         "Long": 0.75,
         "NoLife": 1,
         "Fight": 1,
         "Loot": 1
+        "Explore": 1
     }
 
     newpp = pd.Series({"timeInvest": strtofloat[time],
@@ -79,3 +80,6 @@ def filterprint(csvname, playerclass, pp):
     topq = df.iloc[topidx, :].tolist()  # make into list
     print(topq)
     return topq
+
+def updatepp(pp, changes):
+    pass
