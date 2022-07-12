@@ -101,8 +101,9 @@ function App() {
 
     //todo reset to menu and adapt recommender algorithm in backend
     function clickedRecommendation() {
-        setIsQuestStart(false)
-        setQuestFeedback(false)
+        // reset the dialogue tree to the menu
+        // setIsQuestStart(false)
+        // setQuestFeedback(false)
     }
 
     return (
@@ -147,7 +148,7 @@ function App() {
                                         <div>
                                             <h4>{jobQuestion[currentText]}</h4>
                                         </div>
-                                    ) : questFromServer ? (
+                                    ) : questFromServer && currentText != 2? (
                                             <div><h2>{"I recommend you do " + questFromServer.name + " in " +
                                             questFromServer.location + " next. Go to " + questFromServer.npc +
                                             " for further instructions."}</h2></div>)
