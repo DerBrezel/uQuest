@@ -109,6 +109,7 @@ function App() {
             setIsQuestStart(false)
             setQuestFeedback(false)
             setCurrentText(3)
+            setQuestFromServer("")
         }
     }
 
@@ -131,6 +132,7 @@ function App() {
         setQuestFeedback(false)
         setNeedQuestFeedback(false)
         setCurrentText(3)
+        setQuestFromServer("")
     }
 
     return (
@@ -145,7 +147,7 @@ function App() {
                 <Row style={{margin: "1rem"}}>
                     <Col xs={2}></Col>
                     <Col>
-                        <Row><img style={{
+                        <Row><img alt={"Skyrim Dude"} style={{
                             marginTop: 10,
                             marginLeft: 200,
                             height: 650,
@@ -189,7 +191,7 @@ function App() {
                                             <div>
                                                 <h4>{jobQuestion[currentText]}</h4>
                                             </div>
-                                        ) : questFromServer && currentText != 2 ? (
+                                        ) : questFromServer && currentText !== 2 ? (
                                                 <div><h4>{"I recommend you do " + questFromServer.name + " in " +
                                                     questFromServer.location + " next. Go to " + questFromServer.npc +
                                                     " for further instructions."}</h4></div>)

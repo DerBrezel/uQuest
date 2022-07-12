@@ -31,7 +31,7 @@ function PlayerChoice({choices, text1, text2, onClick, type}) {
                         </div>
                     </Col>
                     <Col style={{alignItems: "end"}}>
-                        <img src={CurrentSelection} height={24} hidden={!isHovered[i]}/> </Col>
+                        <img alt={"Interface"} src={CurrentSelection} height={24} hidden={!isHovered[i]}/> </Col>
                 </Row>)
             })}
         </div>

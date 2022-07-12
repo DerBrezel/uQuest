@@ -87,11 +87,11 @@ def filterprint(csvname, playerclass, pp):
 def updatefilter(csvname, playerclass, playstyle, time, loot, fight, explore, pp):
     weightImpact = 0.1
 
-    if loot is not 0:
+    if loot != 0:
         pp[1] + loot * weightImpact
-    elif fight is not 0:
+    elif fight != 0:
         pp[2] + fight * weightImpact
-    elif explore is not 0:
+    elif explore != 0:
         pp[3] + explore * weightImpact
 
     return filter(csvname, playerclass, playstyle, time, pp)

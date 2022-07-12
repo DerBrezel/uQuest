@@ -3,7 +3,7 @@
 
 from flask import Flask, request, session
 from flask_session import Session
-from filtering import filter
+from filtering import filter, updatefilter
 
 app = Flask(__name__)
 
@@ -50,7 +50,8 @@ def update_pp():
         loot = response['loot']
         fight = response['fight']
         explore = response['explore']
-        results, pp = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"], session["pp"])
+        results, pp = updatefilter('skyrim_db.csv', session["job"], session["playstyle"], session["time"], loot, fight,
+                                   explore, session["pp"])
         session["pp"] = pp
         return {'name': results[1], 'type': results[2], 'location': results[3], 'area': results[4], 'npc': results[5],
                 'followup': 0}  # change results[6] so it never returns nan results[6]}
