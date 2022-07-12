@@ -32,12 +32,12 @@ function App() {
     //Recomend me a quest:
     const [iscoldStart, setIsColdStart] = useState(true)
     const [isQuestStart, setIsQuestStart] = useState(true)
-    const questRecommendation = ["Quest", "Wildcard", "joke", "to quit"]
+    const questRecommendation = ["Quest", "Wildcard", "joke"]
     const questText1s = ["I want a new ", "Give me a ", "Tell me a ", "I want to "]
 
     const fakeAnswers = ["I recommend you do 'The Mind of Madness' quest in 'Pelagius Wing' next. " +
     "Go to 'Dervenin' for further instructions",
-        "I recommend you raid 'Riften' next", "I wanted to prepare a joke but i took an arrow to the knee", "Thank you for using me"]
+        "I recommend you raid 'Riften' next", "I wanted to prepare a joke but i took an arrow to the knee"]
 
     //todo feedback after player
     const afterRecommendation = ["I liked this quest, give me another", "I liked this quest", "I hated this quest"]
@@ -149,10 +149,10 @@ function App() {
                                             <h4>{jobQuestion[currentText]}</h4>
                                         </div>
                                     ) : questFromServer && currentText != 2? (
-                                            <div><h2>{"I recommend you do " + questFromServer.name + " in " +
+                                            <div><h4>{"I recommend you do " + questFromServer.name + " in " +
                                             questFromServer.location + " next. Go to " + questFromServer.npc +
-                                            " for further instructions."}</h2></div>)
-                                        : (<div><h1>{fakeAnswers[currentText]}</h1></div>)
+                                            " for further instructions."}</h4></div>)
+                                        : (<div><h4>{fakeAnswers[currentText]}</h4></div>)
                                     }
                                 </Col>
                             </Row>
