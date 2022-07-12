@@ -1,11 +1,10 @@
 //import './App.css';
 import React, {useState, useEffect} from 'react';
-import TypeWriterEffect from 'react-typewriter-effect';
 import PlayerChoice from "./components/PlayerChoice";
 import {Container, Row, Col} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SkyrimDude from './assets/Skyrim_Dude.png';
-import SkyrimBackground from './assets/background.jpg'
+import SkyrimBackground from './assets/background2.jpg'
 
 function App() {
 
@@ -15,12 +14,13 @@ function App() {
     const [currentPlaystyle, setCurrentPlaystyle] = useState("");
     const [currentTime, setCurrentTime] = useState("");
     const jobs = ["Warrior", "Thief", "Mage"]
-    const playstyle = ["Explore", "Talk", "Fight", "Loot"]
-    const time = ["Short", "Medium", "Long", "NoLife"]
-    const jobQuestion = ["What class do you like to play?", "What do you like to do?", "How long do you want to play?",
+    const playstyle = ["Explore", "Fight", "Loot"]
+    const time = ["little time", "some time", "a lot of time", "no life"]
+    const jobQuestion = ["Hi, my Name is Mike and I'd like to help you find the perfect quest. " +
+    "To do that i need to know what class you are.", "What do you like to do?", "How long do you want to play?",
         "How can i help you?"]
 
-    const text1s = ["I am a ", "I like to ", "My Time is "]
+    const text1s = ["I am a ", "I like to ", "I have "]
     const allDialogueOptions = [jobs, playstyle, time]
 
     const QuestionType = {
@@ -109,12 +109,17 @@ function App() {
         <div className="App">
             <Container style={{
                 backgroundImage: `url(${SkyrimBackground})`,
-                backgroundSize: "1500px",
-                backgroundRepeat: "no-repeat"
+                backgroundSize: "1800px",
+                backgroundRepeat: "no-repeat",
+                minHeight: "1800px",
             }}>
-                <Row xs={2}><h1>Skyrim uQuest</h1></Row>
+                <Row xs={2}><h1 style={{color: "white"}}>Skyrim uQuest</h1></Row>
                 <Row style={{margin: "1rem"}}>
                     <Col xs={2}></Col>
+                    <Col>
+                        <Row><img style={{marginTop: 10, marginLeft: 200, height: 650, width: "auto",  transform: "scaleX(-1)"}}
+                                  src={SkyrimDude}/></Row>
+                    </Col>
                     <Col xs={3}>
                         <Row>
                             {iscoldStart ?
@@ -128,31 +133,24 @@ function App() {
                             }
                         </Row>
                     </Col>
-                    <Col>
-                        <Row><img style={{height: 650, width: "auto"}} src={SkyrimDude}/></Row>
-                    </Col>
+                    <Col xs={1}></Col>
                     <Row>
                         <Col xs={2}></Col>
                         <Col xs={6}>
                             <Row>
                                 <Col xs={3}></Col>
                                 <Col xs={9} style={{
-                                    minWidth: "800px",
-                                    border: "3px solid black",
-                                    borderRadius: "5px",
-                                    background: "rgb(201, 201, 201, 0.5)",
+                                    color: "white",
+                                    textAlign: "center"
                                 }}>
                                     {isQuestStart ? (
                                         <div>
-                                            <h1>{jobQuestion[currentText]}</h1>
-                                            <p>You have
-                                                chosen: {currentJob} {currentJob ? "and" : ""} {currentPlaystyle}
-                                                {currentPlaystyle ? "and" : ""} {currentTime}</p>
+                                            <h4>{jobQuestion[currentText]}</h4>
                                         </div>
                                     ) : questFromServer ? (
                                             <div><h2>{"I recommend you do " + questFromServer.name + " in " +
-                                                questFromServer.location + " next. Go to " + questFromServer.npc +
-                                                " for further instructions."}</h2></div>)
+                                            questFromServer.location + " next. Go to " + questFromServer.npc +
+                                            " for further instructions."}</h2></div>)
                                         : (<div><h1>{fakeAnswers[currentText]}</h1></div>)
                                     }
                                 </Col>
