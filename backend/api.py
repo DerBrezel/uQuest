@@ -25,7 +25,8 @@ def get_quest():
     if "job" not in session:
         session["job"] = "Thief"
         session["playstyle"] = "Fight"
-        session["time"] = "Short"
+        session["time"] = "some time"
+        session["pp"] = None
 
     if request.method == 'GET':
         results, pp = filter('skyrim_db.csv', session["job"], session["playstyle"], session["time"], session["pp"])
