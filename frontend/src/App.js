@@ -40,7 +40,6 @@ function App() {
     "Go to 'Dervenin' for further instructions",
         "I recommend you raid 'Riften' next", "I wanted to prepare a joke but i took an arrow to the knee"]
 
-    //todo feedback after player
     const afterRecommendation = ["I liked this quest", "I hated this quest"]
     const [questFeedback, setQuestFeedback] = useState("")
     const [questFromServer, setQuestFromServer] = useState("")
@@ -194,8 +193,8 @@ function App() {
                                             </div>
                                         ) : questFromServer && currentText !== 2 ? (
                                                 <div><h4>{"I recommend you do " + questFromServer.name + " in " +
-                                                    questFromServer.location + " next. Go to " + questFromServer.npc +
-                                                    " for further instructions."}</h4></div>)
+                                                questFromServer.location + " next. Go to " + questFromServer.npc +
+                                                " for further instructions."}</h4></div>)
                                             : (<div><h4>{fakeAnswers[currentText]}</h4></div>)
                                     }
                                 </Col>
