@@ -1,6 +1,41 @@
-itemId;itemName;itemType;itemLocation;itemArea;itemGiver;itemFollowup;itemDuration;itemExp;itemValue;itemEqWarrior;itemEqThief;itemEqMage
-1;First Lessons;Quest;College of Winterhold;Winterhold;Tolfdir;NULL;0.25;0.1;0.2;0;0.1;0.5
-2;A Chance Arrangement;Quest;Riften;The Rift;Bynjolf;NULL;0.25;0.1;0.4;0;0.5;0
-3;Take up Arms;Quest;Jorrvaskr;Whiterun;NULL;NULL;0.5;0.2;0.2;0.1;0;0
-4;Composure, Speed, and Precision;Quest;Angi's Camp;Falkreath;Angi;NULL;0.5;0.8;0.2;0;0.3;0
-5;NULL;Dungeon;Knifepoint Ridge;Falkreath;NULL;NULL;0.5;0.5;0.5;0.3;0.2;0
+itemId;itemName;itemType;itemLocation;itemArea;itemGiver;itemFollowup;itemDuration;itemExp;itemValue;itemEqWarrior;itemEqThief;itemEqMage;itemLevel
+1;First Lessons;Quest;College of Winterhold;Winterhold;Tolfdir;6;0.25;0.1;0.2;0;0.1;0.5;1
+2;A Chance Arrangement;Quest;Riften;The Rift;Bynjolf;19;0.25;0.1;0.4;0;0.5;0;1
+3;Take up Arms;Quest;Jorrvaskr;Whiterun;NULL;14;0.5;0.2;0.2;0.1;0;0;1
+4;Composure, Speed, and Precision;Quest;Angi's Camp;Falkreath;Angi;NULL;0.5;0.8;0.2;0;0.3;0;1
+5;NULL;Dungeon;Knifepoint Ridge;Falkreath;NULL;NULL;0.5;0.5;0.5;0.3;0.2;0;6
+6;Under Saarthal;Quest;Saarthal;Winterhold;Tolfdir;7;0.75;0.4;0.3;0.3;0.1;0.3;6
+7;Hitting the Books;Quest;College of Winterhold;Winterhold;Savos Aren;8;0.75;0.8;0.3;0.2;0.1;0.6;8
+8;Good Intentions;Quest;College of Winterhold;Winterhold;Tolfdir;9;0.5;0.2;0.1;0;0;0.4;6
+9;Revealing the Unseen;Quest;College of Winterhold;Winterhold;Mirabelle Ervine;10;0.75;0.6;0.7;0.2;0.1;0.1;16
+10;Containment;Quest;College of Winterhold;Winterhold;NULL;11;0.25;0.3;0.2;0;0;0.7;12
+11;The Staff of Magnus;Quest;Labyrinthian;Hjaalmarch;Mirabelle Ervine;12;0.75;0.6;0.5;0.3;0.2;0.7;20
+12;The Eye of Magnus;Quest;College of Winterhold;Winterhold;NULL;13;0.25;0.25;0.6;0;0;0.9;12
+13;Aftershock;Quest;College of Winterhold;Winterhold;Tolfdir;NULL;0.5;0.5;0.4;0;0;0.1;12
+14;Proving Honor;Quest;Jorrvaskr;Whiterun;Skjor;15;0.5;0.4;0.4;0.4;0.1;0;6
+15;The Silver Hand;Quest;Jorrvaskr;Whiterun;Skjor;16;0.5;0.3;0.4;0.7;0.2;0;6
+16;Blood's Honor;Quest;Jorrvaskr;Whiterun;Kodlak Whitemane;17;0.5;0.4;0.3;0.2;0;0.1;14
+17;Purity of Revenge;Quest;Jorrvaskr;Whiterun;Vilkas;18;0.75;0.5;0.5;0.3;0.1;0.1;8
+18;Glory of the Dead;Quest;Skyforge;Whiterun;Vilkas;NULL;0.75;0.7;0.6;0.7;0.2;0.1;20
+19;Taking Care of Business;Quest;Ragged Flagon;The Rift;Brynjolf;20;0.5;0.1;0.2;0;0.1;0;6
+20;Loud and Clear;Quest;Ragged Flagon;The Rift;Brynjolf;21;0.75;0.4;0.6;0.2;0.8;0;8
+21;Dampened Spirits;Quest;Ragged Flagon;The Rift;Brynjolf;22;0.5;0.4;0.3;0.1;0.3;0.1;10
+22;Scoundrel's Folly;Quest;Ragged Flagon;The Rift;Brynjolf;23;0.75;0.4;0.6;0.2;0.5;0.2;10
+23;Speaking with Silence;Quest;Snow Veil Sanctum;Winterhold;Mercer Frey;24;0.75;0.4;0.4;0.2;0.3;0.1;14
+24;Hard Answers;Quest;The Frozen Hearth;Winterhold;Karliah;25;0.5;0.2;0.4;0.3;0.4;0.1;10
+25;The Pursuit;Quest;Ragged Flagon;The Rift;Karliah;26;0.5;0.3;0.3;0.2;0.3;0;8
+26;Trinity Restored;Quest;Ragged Flagon;The Rift;Brynjolf;27;0.5;0.1;0.3;0;0.9;0;10
+27;Blindsighted;Quest;Ragged Flagon;The Rift;Brynjolf;28;0.75;0.5;0.5;0.2;0.8;0.1;12
+28;Darkness Returns;Quest;Twilight Sepulcher;Falkreath;Karliah;29;0.75;0.4;0.4;0.2;0.6;0.2;14
+29;Under New Management;Quest;Ragged Flagon;The Rift;NULL;NULL;0.25;0.1;0.6;0;0.7;0;8
+30;The Black Star;Quest;Shrine of Azura;Winterhold;Aranea Ienith;NULL;0.75;0.4;0.6;0.2;0.1;0.1;8
+31;Boethiah's Calling;Quest;Sacellum of Boethiah;Eastmarch;NULL;NULL;0.5;0.4;0.6;0.4;0.2;0;30
+32;A Daedra's Best Friend;Quest;Falkreath;Falkreath;Barbas;NULL;0.75;0.5;0.4;0.3;0.1;0.2;10
+33;NULL;Dungeon;Darklight Tower;The Rift;NULL;NULL;0.5;0.5;0.4;0.1;0.2;0.3;8
+34;NULL;Dungeon;Folgunthur;Haafingar;NULL;NULL;0.5;0.6;0.6;0.4;0.2;0.1;6
+35;NULL;Dungeon;Forelhost;The Rift;NULL;NULL;0.75;0.7;0.8;0.5;0.4;0.1;24
+36;NULL;Dungeon;Frostmere Crypt;The Pale;NULL;NULL;0.5;0.4;0.3;0.3;0.2;0;6
+37;NULL;Dungeon;High Gate Ruins;The Pale;NULL;NULL;0.5;0.4;0.3;0.2;0.1;0.3;24
+38;NULL;Dungeon;Ironbind Barrow;Winterhold;NULL;NULL;0.25;0.2;0.1;0.1;0;0;6
+39;NULL;Dungeon;Nilheim;The Rift;NULL;NULL;0.25;0.1;0.1;0.1;0.1;0;6
+40;NULL;Dungeon;Sleeping Tree Camp;Whiterun;NULL;NULL;0.25;0.2;0.2;0;0;0.2;2

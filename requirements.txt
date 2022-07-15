@@ -9,3 +9,4 @@ python-dotenv==0.20.0
 Werkzeug==2.1.2
 zipp==3.8.0
 pandas==1.4.3
+Flask-Session==0.4.0
