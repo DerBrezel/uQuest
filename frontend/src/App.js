@@ -8,6 +8,9 @@ import SkyrimBackground from './assets/background2.jpg'
 
 function App() {
 
+    useEffect(() => {
+        document.title = "uQuest"
+    })
     // Cold Start. Initial Questions
     const [currentText, setCurrentText] = useState(0);
     const [currentJob, setCurrentJob] = useState("");
@@ -99,7 +102,6 @@ function App() {
         }
     }
 
-    //todo reset to menu and adapt recommender algorithm in backend
     function clickedRecommendation(index) {
         if (index === 1) {
             setNeedQuestFeedback(true);
